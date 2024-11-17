@@ -8,24 +8,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+using ProjectLaundryVS.UserControls;
 
 namespace ProjectLaundryVS
 {
     public partial class LoginForm : Form
     {
-        private MySqlConnection koneksi;
-        private MySqlDataAdapter adapter;
-        private MySqlCommand perintah;
-        private DataSet ds = new DataSet();
-        private string alamat, query;
+
         public static string username;
+        public static bool moveToLogin = false, moveToRegister = false;
+
+        private UserControl LoginControl = new LoginComponent();
+        private UserControl RegisterControl = new Register();
         public LoginForm()
         {
-            alamat = "server=localhost; database=projectlaundry; username=root; password=;";
-            koneksi = new MySqlConnection(alamat);
             InitializeComponent();
+            this.ContentPanel.Controls.Clear();
+            timer1.Start();
+            ContentPanel.Controls.Add(LoginControl);
+            ContentPanel.Controls.Add(RegisterControl);
+
+            LoginControl.Visible = true;
+            RegisterControl.Visible = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,47 +37,27 @@ namespace ProjectLaundryVS
 
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            try
-            {
-                username = txtUsername.Text;
 
-                query = string.Format("select * from tb_admin where username = '{0}'", txtUsername.Text);
-                ds.Clear();
-                koneksi.Open();
-                perintah = new MySqlCommand(query, koneksi);
-                adapter = new MySqlDataAdapter(perintah);
-                perintah.ExecuteNonQuery();
-                adapter.Fill(ds);
-                koneksi.Close();
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    foreach (DataRow kolom in ds.Tables[0].Rows)
-                    {
-                        string sandi;
-                        sandi = kolom["password"].ToString();
-                        if (sandi == txtPassword.Text)
-                        {
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-                            this.Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Anda salah input password");
-                        }
-                    }
+        }
 
-                }
-                else
-                {
-                    MessageBox.Show("Username tidak ditemukan");
-                }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (moveToLogin == true) {
+                this.Show();
+                LoginControl.Visible = true;
+                RegisterControl.Visible = false;
+                moveToLogin = false;
+                return;
             }
-            catch (Exception ex)
+            if (moveToRegister == true)
             {
-                MessageBox.Show(ex.ToString());
+                this.Show();
+                RegisterControl.Visible = true;
+                LoginControl.Visible = false;  
+                moveToRegister = false;
+                return;
             }
         }
     }

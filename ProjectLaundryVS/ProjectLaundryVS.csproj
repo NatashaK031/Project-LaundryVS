@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\LoginComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LoginComponent.Designer.cs">
+      <DependentUpon>LoginComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Pesanan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,6 +148,12 @@
     <Compile Include="UserControls\ProfilMenu.Designer.cs">
       <DependentUpon>ProfilMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Register.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Riwayat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,6 +176,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\LoginComponent.resx">
+      <DependentUpon>LoginComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Pesanan.resx">
       <DependentUpon>Pesanan.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProfilMenu.resx">
       <DependentUpon>ProfilMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Riwayat.resx">
       <DependentUpon>Riwayat.cs</DependentUpon>

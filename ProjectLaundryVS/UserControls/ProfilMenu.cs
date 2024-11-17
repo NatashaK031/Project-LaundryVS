@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,37 @@ namespace ProjectLaundryVS.UserControls
             NameLabel.Text = profilename;
             isPasswordHidden = false;
             ShowPWButton_Click(null, null);
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                koneksi.Open();
+                // Add parameter to the query
+                query = string.Format("DELETE FROM tb_admin WHERE username = '{0}'", LoginForm.username);
+                using (MySqlCommand command = new MySqlCommand(query, koneksi))
+                {
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            password = reader["password"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data not found!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                koneksi.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void ShowPWButton_Click(object sender, EventArgs e)
