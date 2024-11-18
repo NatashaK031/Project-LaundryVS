@@ -22,6 +22,7 @@ namespace ProjectLaundryVS.UserControls
         private MySqlCommand perintah;
         private DataSet ds = new DataSet();
         private string alamat, query;
+        public static MainForm mainForm = new MainForm();
         public LoginComponent()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace ProjectLaundryVS.UserControls
         {
             try
             {
-                username = txtUsername.Text;
+                LoginForm.username = txtUsername.Text;
 
                 query = string.Format("select * from tb_admin where username = '{0}'", txtUsername.Text);
                 ds.Clear();
@@ -62,7 +63,6 @@ namespace ProjectLaundryVS.UserControls
                         sandi = kolom["password"].ToString();
                         if (sandi == txtPassword.Text)
                         {
-                            MainForm mainForm = new MainForm();
                             mainForm.Show();
                             this.Hide();
                         }

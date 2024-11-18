@@ -49,6 +49,7 @@ namespace ProjectLaundryVS
                 LoginControl.Visible = true;
                 RegisterControl.Visible = false;
                 moveToLogin = false;
+                LoginComponent.mainForm.Hide();
                 return;
             }
             if (moveToRegister == true)
@@ -57,6 +58,7 @@ namespace ProjectLaundryVS
                 RegisterControl.Visible = true;
                 LoginControl.Visible = false;  
                 moveToRegister = false;
+                LoginComponent.mainForm.Hide();
                 return;
             }
         }

@@ -83,27 +83,37 @@ namespace ProjectLaundryVS.UserControls
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            var confirmationResult = MessageBox.Show(
+            "Are you sure you want to delete this account?",
+            "Confirm Deletion",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+            );
+
+            // If the user selects 'No', exit the method
+            if (confirmationResult != DialogResult.Yes)
+            {
+                return;
+            }
+
             try
             {
                 koneksi.Open();
                 // Add parameter to the query
-                query = string.Format("DELETE FROM tb_admin WHERE username = '{0}'", LoginForm.username);
-                using (MySqlCommand command = new MySqlCommand(query, koneksi))
-                {
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            password = reader["password"].ToString();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Data not found!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
+                query = string.Format("DELETE FROM tb_admin WHERE username = '{0}'", profilename);
+                perintah = new MySqlCommand(query, koneksi);
+                adapter = new MySqlDataAdapter(perintah);
+                int res = perintah.ExecuteNonQuery();
                 koneksi.Close();
+                if (res == 1)
+                {
+                    MessageBox.Show("Akun berhasil dihapus");
+                    LoginForm.moveToLogin = true;
+                }
+                else
+                {
+                    MessageBox.Show("Insert data gagal");
+                }
             }
             catch (Exception ex)
             {

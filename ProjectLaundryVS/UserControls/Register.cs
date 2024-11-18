@@ -22,6 +22,9 @@ namespace ProjectLaundryVS.UserControls
         public Register()
         {
             InitializeComponent();
+
+            alamat = "server=localhost; database=projectlaundry; username=root; password=;";
+            koneksi = new MySqlConnection(alamat);
         }
 
         private void Register_Load(object sender, EventArgs e)
@@ -46,7 +49,7 @@ namespace ProjectLaundryVS.UserControls
                 MessageBox.Show("Masukkan password anda!");
                 return;
             }
-            if (txtPassword != txtPassword2)
+            if (txtPassword.Text != txtPassword2.Text)
             {
                 MessageBox.Show("Password yang di-isi harus sama!");
                 return;
