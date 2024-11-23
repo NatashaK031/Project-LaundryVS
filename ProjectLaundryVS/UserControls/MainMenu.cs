@@ -43,5 +43,25 @@ namespace ProjectLaundryVS
         {
             MainForm.moveToRiwayat = true;
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var confirmResult = MessageBox.Show("Yakin ingin keluar?", "Confirm Logout", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    this.Hide();
+                    LoginForm loginForm = new LoginForm();
+                    loginForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error logging out: " + ex.Message);
+            }
+        }
+
     }
 }

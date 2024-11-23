@@ -97,6 +97,17 @@ namespace ProjectLaundryVS.UserControls
             MainForm.moveToRiwayat = true;
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormCRPembayaran formCRPembayaran = new FormCRPembayaran();
+            formCRPembayaran.Show();
+        }
+
         private void TambahkanButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(PaymentBox.Text))

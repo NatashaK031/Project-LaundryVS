@@ -32,7 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonRiwayat = new System.Windows.Forms.Button();
             this.buttonPembayaran = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonPesanan = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -42,14 +41,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Print = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
             this.panel1.Controls.Add(this.buttonRiwayat);
             this.panel1.Controls.Add(this.buttonPembayaran);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -81,17 +82,6 @@
             this.buttonPembayaran.Text = "Pembayaran";
             this.buttonPembayaran.UseVisualStyleBackColor = false;
             this.buttonPembayaran.Click += new System.EventHandler(this.buttonPembayaran_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ProjectLaundryVS.Properties.Resources._return;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 39);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 57;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // buttonPesanan
             // 
@@ -173,11 +163,34 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ProjectLaundryVS.Properties.Resources._return;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 39);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 57;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // Print
+            // 
+            this.Print.BackColor = System.Drawing.Color.White;
+            this.Print.Location = new System.Drawing.Point(798, 75);
+            this.Print.Name = "Print";
+            this.Print.Size = new System.Drawing.Size(159, 33);
+            this.Print.TabIndex = 63;
+            this.Print.Text = "Print";
+            this.Print.UseVisualStyleBackColor = false;
+            this.Print.Click += new System.EventHandler(this.Print_Click);
+            // 
             // Riwayat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.Print);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -189,8 +202,8 @@
             this.Size = new System.Drawing.Size(1060, 500);
             this.Load += new System.EventHandler(this.Riwayat_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,5 +224,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Print;
     }
 }

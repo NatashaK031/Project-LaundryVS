@@ -56,19 +56,37 @@ namespace ProjectLaundryVS.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (search.All(char.IsDigit))
+            try
             {
-                deleteByID();
-                setDatagrid(adapter);
-                return;
+                if (string.IsNullOrWhiteSpace(SearchBox.Text))
+                {
+                    MessageBox.Show("Please enter an ID or Name to delete.");
+                    return;
+                }
+                if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (SearchBox.Text.All(char.IsDigit))
+                    {
+                        deleteByID();
+                    }
+                    else if (SearchBox.Text.All(char.IsLetter))
+                    {
+                        deleteByName(); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Input tidak valid. Mohon masukkan ID atau Nama dengan benar.");
+                        return;
+                    }
+                    setDatagrid(adapter);
+                }
             }
-            else if (search.All(char.IsLetter))
+            catch (Exception ex)
             {
-                deleteByName();
-                setDatagrid(adapter);
-                return;
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -106,10 +124,10 @@ namespace ProjectLaundryVS.UserControls
         {
             try
             {
-                ds.Clear(); // Clear the DataSet
-                dataGridView1.DataSource = null; // Clear the DataGridView's DataSource
-                data.Fill(ds); // Fill the DataSet
-                
+                ds.Clear();
+                dataGridView1.DataSource = null;
+                data.Fill(ds); 
+
                 dataGridView1.DataSource = ds.Tables[0];
                 dataGridView1.Columns[0].Width = 100;
                 dataGridView1.Columns[0].HeaderText = "ID Pesanan";
@@ -138,7 +156,7 @@ namespace ProjectLaundryVS.UserControls
         }
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void searchAllSQL()
@@ -176,7 +194,7 @@ namespace ProjectLaundryVS.UserControls
                 MessageBox.Show(ex.ToString());
             }
         }
-        
+
         private void searchByName()
         {
             try
@@ -199,18 +217,31 @@ namespace ProjectLaundryVS.UserControls
         {
             try
             {
+                string query = "DELETE FROM tbl_orderan WHERE ID_Pesanan = @idPesanan";
                 koneksi.Open();
-                query = string.Format("delete from tbl_orderan where ID_Pesanan = '%{0}%'", search);
                 perintah = new MySqlCommand(query, koneksi);
-                adapter = new MySqlDataAdapter(perintah);
-                perintah.ExecuteNonQuery();
-                ds.Clear();
-                adapter.Fill(ds);
+                perintah.Parameters.AddWithValue("@idPesanan", SearchBox.Text);
+                int res = perintah.ExecuteNonQuery();
+                koneksi.Close();
+                if (res == 1)
+                {
+                    MessageBox.Show("Data berhasil dihapus.");
+                }
+                else
+                {
+                    MessageBox.Show("Gagal menghapus data.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void Print_Click(object sender, EventArgs e)
+        {
+            FormCRRiwayat formCRRiwayat = new FormCRRiwayat();
+            formCRRiwayat.Show();
         }
 
         private void deleteByName()
@@ -218,17 +249,25 @@ namespace ProjectLaundryVS.UserControls
             try
             {
                 koneksi.Open();
-                query = string.Format("delete from tbl_orderan where Nama_Pelanggan = '%{0}%'", search);
+                string query = "DELETE FROM tbl_orderan WHERE Nama_Pelanggan = @namaPelanggan";
                 perintah = new MySqlCommand(query, koneksi);
-                adapter = new MySqlDataAdapter(perintah);
-                perintah.ExecuteNonQuery();
-                ds.Clear();
-                adapter.Fill(ds);
+                perintah.Parameters.AddWithValue("@namaPelanggan", SearchBox.Text.Trim());
+                int res = perintah.ExecuteNonQuery();
+                koneksi.Close();
+                if (res == 1)
+                {
+                    MessageBox.Show("Data berhasil dihapus.");
+                }
+                else
+                {
+                    MessageBox.Show("Gagal menghapus data.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
     }
 }

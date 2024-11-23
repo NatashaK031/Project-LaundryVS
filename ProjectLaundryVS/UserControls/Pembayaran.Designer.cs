@@ -54,6 +54,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.IDSearchBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -72,6 +73,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1060, 61);
             this.panel1.TabIndex = 46;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // buttonRiwayat
             // 
@@ -119,6 +121,7 @@
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.TambahkanButton);
             this.panel2.Controls.Add(this.SearchButton);
             this.panel2.Controls.Add(this.PaymentBox);
@@ -328,6 +331,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(766, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 38);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Pembayaran
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -373,5 +386,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button TambahkanButton;
         private System.Windows.Forms.Label StatusLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
