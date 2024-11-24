@@ -53,6 +53,7 @@
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "FormCRRiwayat";
             this.Text = "FormCRRiwayat";
+            this.Load += new System.EventHandler(this.FormCRRiwayat_Load);
             this.ResumeLayout(false);
 
         }

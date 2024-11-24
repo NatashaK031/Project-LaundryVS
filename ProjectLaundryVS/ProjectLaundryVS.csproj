@@ -133,12 +133,6 @@
     <Compile Include="UserControls\CRPembayaran.Designer.cs">
       <DependentUpon>CRPembayaran.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\FormCRPembayaran.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserControls\FormCRPembayaran.Designer.cs">
-      <DependentUpon>FormCRPembayaran.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\FormCRRiwayat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,9 +207,6 @@
     <EmbeddedResource Include="UserControls\CRPembayaran.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRPembayaran.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\FormCRPembayaran.resx">
-      <DependentUpon>FormCRPembayaran.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FormCRRiwayat.resx">
       <DependentUpon>FormCRRiwayat.cs</DependentUpon>

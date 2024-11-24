@@ -16,5 +16,10 @@ namespace ProjectLaundryVS.UserControls
         {
             InitializeComponent();
         }
+
+        private void FormCRRiwayat_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

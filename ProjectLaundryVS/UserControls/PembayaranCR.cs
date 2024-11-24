@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjectLaundryVS.UserControls
 {
-    public partial class FormCRPembayaran : Form
+    public partial class PembayaranCR : Form
     {
-        public FormCRPembayaran()
+        public PembayaranCR()
         {
             InitializeComponent();
         }
